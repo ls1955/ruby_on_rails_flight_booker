@@ -18,6 +18,6 @@ airport_ids = [[1, 2], [2, 1], [1, 5], [2, 3], [4, 3]]
 airport_ids.each do |depart_airport_id, arrive_airport_id|
   Flight.create(departure_airport_id: depart_airport_id,
                 arrival_airport_id: arrive_airport_id,
-                start: DateTime.now,
+                depart: DateTime.now,
                 duration: 2.hours)
 end
