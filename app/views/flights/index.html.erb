@@ -3,13 +3,13 @@
 <h2>Search for flights:</h2>
 <%= form_with url: flights_path , method: :get do |form| %>
   <div class="field">
-    <%= form.label :departure_airport_id, "From" %>
-    <%= form.select :departure_airport_id, @airports, selected: 5 %>
+    <%= form.label :departure_airport_name, "From" %>
+    <%= form.select :departure_airport_name, @airports %>
   </div>
 
   <div class="field">
-    <%= form.label :arrival_airport_id, "To" %>
-    <%= form.select :arrival_airport_id, @airports %>
+    <%= form.label :arrival_airport_name, "To" %>
+    <%= form.select :arrival_airport_name, @airports %>
   </div>
 
   <div class="field">
