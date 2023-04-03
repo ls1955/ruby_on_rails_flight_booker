@@ -1,6 +1,6 @@
 <h1>Main page.</h1>
 
-<h2>Search for a flight.</h2>
+<h2>Search for flights:</h2>
 <%= form_with url: flights_path , method: :get do |form| %>
   <div class="field">
     <%= form.label :departure_airport_id, "From" %>
@@ -28,12 +28,15 @@
 <% end %>
 
 <% if params[:commit] == "Search" %>
-  <h2>Search results</h2>
+  <h2>Results:</h2>
+
   <%= form_with url: new_booking_path, method: :get do |form| %>
     <%= hidden_field_tag :tickets_num, params[:tickets_num] %>
 
     <div class="field">
-      <%= form.collection_radio_buttons :flight_id, @search_results, :id, :detail %>
+      <%= form.collection_radio_buttons :flight_id, @search_results, :id, :detail do |button| %>
+        <%= button.label { button.radio_button + button.text} %><br>
+      <% end %>
     </div>
 
     <div class="action">
