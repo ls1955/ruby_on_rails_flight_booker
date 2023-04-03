@@ -1,6 +1,6 @@
 <h1>Main page.</h1>
 
-<h3>Search for a flight.</h3>
+<h2>Search for a flight.</h2>
 <%= form_with url: flights_path , method: :get do |form| %>
   <div class="field">
     <%= form.label :departure_airport_id, "From" %>
@@ -28,25 +28,16 @@
 <% end %>
 
 <% if params[:commit] == "Search" %>
-  <div class="search_results_forms">
-    <table style="border: 1px solid black; padding: 20px 10px; margin-top: 20px;">
-      <thead>
-        <tr>
-          <th>From</th>
-          <th>To</th>
-          <th>Depart</th>
-          <th>Duration(in hours)</th>
-        </tr>
-      </thead>
+  <h2>Search results</h2>
+  <%= form_with url: new_booking_path, method: :get do |form| %>
+    <%= hidden_field_tag :tickets_num, params[:tickets_num] %>
 
-      <% @search_results.each do |result| %>
-        <tr>
-          <td style="border: 1px solid black; padding: 5px;"><%= result.departure_airport.name %></td>
-          <td style="border: 1px solid black; padding: 5px;"><%= result.arrival_airport.name %></td>
-          <td style="border: 1px solid black; padding: 5px;"><%= result.depart.to_date %></td>
-          <td style="border: 1px solid black; padding: 5px;"><%= result.duration.seconds.in_hours %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+    <div class="field">
+      <%= form.collection_radio_buttons :flight_id, @search_results, :id, :detail %>
+    </div>
+
+    <div class="action">
+      <%= form.submit "Book" %>
+    </div>
+  <% end %>
 <% end %>

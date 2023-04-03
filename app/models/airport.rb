@@ -3,4 +3,8 @@ class Airport < ApplicationRecord
   has_many :arriving_flights, class_name: "Flight", foreign_key: "arrival_airport_id"
 
   validates :code, :name, presence: true
+
+  def to_s
+    name
+  end
 end
