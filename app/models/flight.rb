@@ -4,4 +4,6 @@ class Flight < ApplicationRecord
 
   validates :departure_airport_id, :arrival_airport_id, presence: true
   validates :start, :duration, presence: true
+
+  scope :same_date, ->(depart) { where depart: depart.beginning_of_day..depart.end_of_day }
 end

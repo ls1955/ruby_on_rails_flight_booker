@@ -1,0 +1,52 @@
+<h1>Main page.</h1>
+
+<h3>Search for a flight.</h3>
+<%= form_with url: flights_path , method: :get do |form| %>
+  <div class="field">
+    <%= form.label :departure_airport_id, "From" %>
+    <%= form.select :departure_airport_id, @airports, selected: 5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arrival_airport_id, "To" %>
+    <%= form.select :arrival_airport_id, @airports %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tickets_num, "Number of Passenger"%>
+    <%= form.select :tickets_num, @tickets_range %>
+  </div>
+
+  <div class="field">
+    <%= form.label :depart, "Depart" %>
+    <%= form.select :depart, @dates %>
+  </div>
+  
+  <div class="action">
+    <%= form.submit "Search" %>
+  </div>
+<% end %>
+
+<% if params[:commit] == "Search" %>
+  <div class="search_results_forms">
+    <table style="border: 1px solid black; padding: 20px 10px; margin-top: 20px;">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Depart</th>
+          <th>Duration(in hours)</th>
+        </tr>
+      </thead>
+
+      <% @search_results.each do |result| %>
+        <tr>
+          <td style="border: 1px solid black; padding: 5px;"><%= result.departure_airport.name %></td>
+          <td style="border: 1px solid black; padding: 5px;"><%= result.arrival_airport.name %></td>
+          <td style="border: 1px solid black; padding: 5px;"><%= result.depart.to_date %></td>
+          <td style="border: 1px solid black; padding: 5px;"><%= result.duration.seconds.in_hours %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
