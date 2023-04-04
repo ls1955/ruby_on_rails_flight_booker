@@ -1,1 +1,35 @@
-<h1>New booking view</h1>
+<h1>Selected flight:</h1>
+
+<%= form_with model: @booking do |form| %>
+  <table style="border: 1px solid; padding: 20px 10px; text-align: left;">
+    <thead>
+      <tr>
+        <th style="padding: 10px;">Flight id</th>
+        <th style="padding: 10px;">Depart</th>
+        <th style="padding: 10px;">From</th>
+        <th style="padding: 10px;">To</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th style="padding: 10px;"><%= @flight.id %></th>
+        <th style="padding: 10px;"><%= @flight.depart.to_date %></th>
+        <th style="padding: 10px;"><%= @flight.departure_airport.name %></th>
+        <th style="padding: 10px;"><%= @flight.arrival_airport.name %></th>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= fields_for :passenger do |passenger_form| %>
+    <div class="field">
+      <%= passenger_form.label :name %>
+      <%= passenger_form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= passenger_form.label :email %>
+      <%= passenger_form.email_field :email %>
+    </div>
+  <% end %>
+<% end %>
