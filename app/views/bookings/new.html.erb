@@ -1,6 +1,7 @@
 <h1>Selected flight:</h1>
 
 <%= form_with model: @booking do |form| %>
+  <%= form.hidden_field :flight_id, value: params[:flight_id] %>
   <table style="border: 1px solid; padding: 20px 10px; text-align: left;">
     <thead>
       <tr>
@@ -21,15 +22,24 @@
     </tbody>
   </table>
 
-  <%= fields_for :passenger do |passenger_form| %>
-    <div class="field">
-      <%= passenger_form.label :name %>
-      <%= passenger_form.text_field :name %>
-    </div>
+  <div style="margin: 20px;">
+    <h2>Passengers informations:</h2>
 
-    <div class="field">
-      <%= passenger_form.label :email %>
-      <%= passenger_form.email_field :email %>
-    </div>
-  <% end %>
+    <%= form.fields_for :passengers do |passenger_form| %>
+      <div style="padding: 20px;">
+        <div class="field">
+          <%= passenger_form.label :name, "Name:" %>
+          <%= passenger_form.text_field :name %>
+        </div>
+        <div class="field">
+          <%= passenger_form.label :email, "Email:" %>
+          <%= passenger_form.email_field :email %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="action">
+    <%= form.submit "Submit the booking" %>
+  </div>
 <% end %>
