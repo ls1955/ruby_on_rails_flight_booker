@@ -26,16 +26,7 @@
     <h2>Passengers informations:</h2>
 
     <%= form.fields_for :passengers do |passenger_form| %>
-      <div style="padding: 20px;">
-        <div class="field">
-          <%= passenger_form.label :name, "Name:" %>
-          <%= passenger_form.text_field :name %>
-        </div>
-        <div class="field">
-          <%= passenger_form.label :email, "Email:" %>
-          <%= passenger_form.email_field :email %>
-        </div>
-      </div>
+      <%= render "passenger_fields", form: passenger_form %>
     <% end %>
   </div>
 
