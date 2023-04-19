@@ -1,4 +1,6 @@
 <div class="group" style="padding: 20px;">
+  <%= form.hidden_field :_destroy %>
+
   <div class="field">
     <%= form.label :name, "Name:" %>
     <%= form.text_field :name %>
@@ -7,5 +9,9 @@
   <div class="field">
     <%= form.label :email, "Email:" %>
     <%= form.email_field :email %>
+  </div>
+
+  <div class="action">
+    <%= link_to "Delete", "#", data: { action: "nested-form#deleteAssociation" } %>
   </div>
 </div>
