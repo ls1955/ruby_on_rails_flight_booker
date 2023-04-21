@@ -1,0 +1,9 @@
+<h1>Hi <%= @passenger.name %>, thanks for placing a booking with us!</h1>
+
+<p>Here are the details of your booking:</p>
+<p>- From: <%= @flight.departure_airport.name %></p>
+<p>- To: <%= @flight.arrival_airport.name %></p>
+<p>- At: <%= @flight.depart.to_date %></p>
+
+<p>Best regards,</p>
+<p>The Odin team.</p>
